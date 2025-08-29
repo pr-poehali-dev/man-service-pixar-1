@@ -4,124 +4,181 @@ import Icon from '@/components/ui/icon';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pixar-light to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-pixar-light to-blue-50 overflow-x-hidden">
       {/* Header */}
-      <header className="bg-white/90 backdrop-blur-sm border-b-2 border-pixar-orange sticky top-0 z-50">
+      <header className="bg-white/90 backdrop-blur-sm border-b-4 border-pixar-orange sticky top-0 z-50 shadow-lg">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-pixar-orange rounded-full flex items-center justify-center">
-              <Icon name="Truck" size={24} className="text-white" />
+            <div className="w-12 h-12 bg-gradient-to-r from-pixar-orange to-red-500 rounded-full flex items-center justify-center shadow-lg animate-bounce-slow">
+              <Icon name="Truck" size={28} className="text-white" />
             </div>
-            <h1 className="text-2xl font-heading font-bold text-pixar-dark">
+            <h1 className="text-3xl font-heading font-bold text-pixar-dark">
               MAN Service
             </h1>
+            <div className="text-sm font-medium text-pixar-orange">
+              "Мощь. Надёжность. Улыбка."
+            </div>
           </div>
           <nav className="hidden md:flex space-x-6">
-            <a href="#home" className="text-pixar-dark hover:text-pixar-orange transition-colors">Главная</a>
-            <a href="#services" className="text-pixar-dark hover:text-pixar-orange transition-colors">Услуги</a>
-            <a href="#about" className="text-pixar-dark hover:text-pixar-orange transition-colors">О нас</a>
-            <a href="#parts" className="text-pixar-dark hover:text-pixar-orange transition-colors">Запчасти</a>
-            <a href="#gallery" className="text-pixar-dark hover:text-pixar-orange transition-colors">Галерея</a>
-            <a href="#contacts" className="text-pixar-dark hover:text-pixar-orange transition-colors">Контакты</a>
+            {["Главная", "Услуги", "О нас", "Запчасти", "Галерея", "Контакты"].map((item) => (
+              <a 
+                key={item}
+                href={`#${item.toLowerCase().replace(' ', '-')}`} 
+                className="text-pixar-dark hover:text-pixar-orange transition-all duration-300 hover:scale-105 font-medium relative group"
+              >
+                {item}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pixar-orange transition-all duration-300 group-hover:w-full"></span>
+              </a>
+            ))}
           </nav>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section id="home" className="py-20 px-4">
-        <div className="container mx-auto text-center">
+      {/* Hero Section - Pixar Magic */}
+      <section id="главная" className="py-20 px-4 relative">
+        <div className="container mx-auto text-center relative">
+          {/* Floating Tools Characters */}
+          <div className="absolute top-10 left-10 animate-float">
+            <img 
+              src="/img/dd3dee4c-d773-4617-a8f8-83e026798bba.jpg" 
+              alt="Весёлый гаечный ключ" 
+              className="w-20 h-20 rounded-full shadow-lg hover:animate-wiggle cursor-pointer"
+            />
+          </div>
+          
+          <div className="absolute top-20 right-20 animate-float" style={{ animationDelay: '1s' }}>
+            <img 
+              src="/img/c984f0b1-54b0-4d71-97bc-752a2a1a4c23.jpg" 
+              alt="Счастливый домкрат" 
+              className="w-24 h-24 rounded-full shadow-lg hover:animate-bounce cursor-pointer"
+            />
+          </div>
+
+          {/* Main Hero Content */}
           <div className="mb-12 relative">
             <img 
               src="/img/d3e51891-70db-425d-b1c8-66ccbad97401.jpg" 
-              alt="Дружелюбный грузовик MAN в сервисе" 
-              className="mx-auto w-full max-w-2xl rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-300"
+              alt="Дружелюбный грузовик MAN в сервисе с повязкой" 
+              className="mx-auto w-full max-w-3xl rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500 cursor-pointer"
             />
+            
+            {/* Wise Old Jeep in Corner */}
+            <div className="absolute bottom-4 left-4 animate-wink">
+              <img 
+                src="/img/aa0bcdd6-9dcc-428f-9275-ecc3a6cdfc37.jpg" 
+                alt="Мудрый старый джип подмигивает" 
+                className="w-20 h-20 rounded-lg shadow-lg hover:animate-pulse-slow cursor-pointer"
+              />
+            </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-heading font-bold mb-6 text-pixar-dark leading-tight">
-            Вернём <span className="text-pixar-orange">Мощь</span> и{' '}
-            <span className="text-pixar-blue">Надёжность!</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 text-pixar-dark font-medium">
-            С заботой о вашем MAN'е 🚛
-          </p>
-          <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
-            <Button className="bg-pixar-orange hover:bg-orange-600 text-white text-lg px-8 py-6 rounded-full transform hover:scale-105 transition-all duration-200 shadow-lg">
-              <Icon name="Wrench" size={20} className="mr-2" />
-              Записаться на ТО!
+
+          {/* Main Headlines with Pixar Style */}
+          <div className="relative">
+            <h1 className="text-6xl md:text-8xl font-heading font-bold mb-6 text-pixar-dark leading-tight">
+              Вернём <span className="text-pixar-orange animate-pulse-slow">Мощь</span> и{' '}
+              <span className="text-pixar-blue">Надёжность!</span>
+            </h1>
+            <p className="text-2xl md:text-3xl mb-8 text-pixar-dark font-medium relative">
+              С заботой о вашем MAN'е 🚛
+              <span className="absolute -top-2 -right-2 text-4xl animate-bounce">💙</span>
+            </p>
+          </div>
+
+          {/* Pixar-Style Action Buttons */}
+          <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+            <Button className="bg-gradient-to-r from-pixar-orange to-red-500 hover:from-red-500 hover:to-pixar-orange text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-pixar-orange/50 animate-pulse-slow">
+              <Icon name="Wrench" size={24} className="mr-3" />
+              🚛 Записаться на ТО!
             </Button>
-            <Button variant="outline" className="border-2 border-pixar-blue text-pixar-blue hover:bg-pixar-blue hover:text-white text-lg px-8 py-6 rounded-full transform hover:scale-105 transition-all duration-200">
-              <Icon name="Settings" size={20} className="mr-2" />
-              Узнать о ремонте
+            <Button variant="outline" className="border-4 border-pixar-blue text-pixar-blue hover:bg-pixar-blue hover:text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl">
+              <Icon name="Settings" size={24} className="mr-3" />
+              🔧 Узнать о ремонте
             </Button>
-            <Button className="bg-red-500 hover:bg-red-600 text-white text-lg px-8 py-6 rounded-full transform hover:scale-105 transition-all duration-200 shadow-lg">
-              <Icon name="Zap" size={20} className="mr-2" />
-              Экстренная помощь
+            <Button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-red-500/50 animate-bounce-slow">
+              <Icon name="Zap" size={24} className="mr-3" />
+              📞 Экстренная помощь
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 bg-white">
+      {/* Services Section - "Почему нам доверяют сердца... то есть моторы?" */}
+      <section id="услуги" className="py-20 bg-white relative">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-pixar-dark">
-              Наши Услуги 🔧
+            <h2 className="text-5xl md:text-6xl font-heading font-bold mb-6 text-pixar-dark">
+              Почему нам доверяют сердца... 💝<br/>
+              <span className="text-pixar-orange">то есть моторы?</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Профессиональное обслуживание грузовиков MAN с улыбкой и гарантией качества
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Наши ожившие инструменты работают с душой и профессионализмом космического уровня! 🚀
             </p>
           </div>
+
+          {/* Animated Services Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 icon: "Stethoscope",
-                title: "Диагностика",
-                description: "Компьютерная диагностика всех систем вашего MAN",
-                color: "pixar-blue"
+                title: "Диагностика \"как в больнице\"",
+                description: "Компьютерная диагностика с улыбкой и точностью до винтика",
+                color: "pixar-blue",
+                emoji: "🩺",
+                animation: "animate-pulse-slow"
+              },
+              {
+                icon: "Package",
+                title: "Оригинальные запчасти",
+                description: "Счастливые коробки с деталями прямо от производителя",
+                color: "pixar-green",
+                emoji: "📦",
+                animation: "animate-bounce-slow"
+              },
+              {
+                icon: "Heart",
+                title: "Честные цены",
+                description: "Прозрачность и дружелюбие в каждом счёте",
+                color: "pixar-orange",
+                emoji: "💰",
+                animation: "animate-float"
               },
               {
                 icon: "Wrench",
                 title: "Ремонт двигателя",
-                description: "Капитальный и текущий ремонт двигателей MAN",
-                color: "pixar-orange"
-              },
-              {
-                icon: "Settings",
-                title: "Техобслуживание",
-                description: "Плановое ТО согласно регламенту производителя",
-                color: "pixar-green"
-              },
-              {
-                icon: "Cog",
-                title: "Трансмиссия",
-                description: "Ремонт и обслуживание КПП и мостов",
-                color: "pixar-yellow"
+                description: "Капитальный и текущий ремонт с заботой космонавта",
+                color: "pixar-yellow",
+                emoji: "🔧",
+                animation: "animate-wiggle"
               },
               {
                 icon: "Zap",
                 title: "Электрика",
-                description: "Диагностика и ремонт электрических систем",
-                color: "pixar-blue"
+                description: "Искры радости в каждом проводе",
+                color: "pixar-blue",
+                emoji: "⚡",
+                animation: "animate-pulse-slow"
               },
               {
                 icon: "Truck",
                 title: "Кузовной ремонт",
-                description: "Восстановление кабины и рамы грузовика",
-                color: "pixar-orange"
+                description: "Восстанавливаем красоту с улыбкой",
+                color: "pixar-green",
+                emoji: "🚛",
+                animation: "animate-float"
               }
             ].map((service, index) => (
-              <Card key={index} className="hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-2 border-gray-100">
-                <CardHeader className="text-center">
-                  <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-${service.color} flex items-center justify-center shadow-lg`}>
-                    <Icon name={service.icon as any} size={32} className="text-white" />
+              <Card key={index} className="hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-4 border-gray-100 hover:border-pixar-orange/30 group cursor-pointer relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-pixar-light/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <CardHeader className="text-center relative z-10">
+                  <div className={`w-20 h-20 mx-auto mb-6 rounded-full bg-${service.color} flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300 ${service.animation}`}>
+                    <Icon name={service.icon as any} size={36} className="text-white" />
                   </div>
-                  <CardTitle className="text-xl font-heading font-bold text-pixar-dark">
-                    {service.title}
+                  <CardTitle className="text-2xl font-heading font-bold text-pixar-dark group-hover:text-pixar-orange transition-colors duration-300">
+                    {service.emoji} {service.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 text-center">
+                  <p className="text-gray-600 text-center text-lg leading-relaxed">
                     {service.description}
                   </p>
                 </CardContent>
@@ -131,57 +188,75 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 bg-gradient-to-r from-pixar-blue to-pixar-green text-white">
-        <div className="container mx-auto px-4">
+      {/* About Section - Cosmic Theme */}
+      <section id="о-нас" className="py-20 bg-gradient-to-r from-pixar-blue to-pixar-green text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAyMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMSIgZmlsbD0id2hpdGUiIGZpbGwtb3BhY2l0eT0iMC4xIi8+Cjwvc3ZnPgo=')] animate-pulse-slow"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-8">
-              О нас 🏆
+            <h2 className="text-5xl md:text-6xl font-heading font-bold mb-8">
+              О нас 🏆🚀
             </h2>
-            <p className="text-xl mb-8 leading-relaxed">
-              Мы — команда профессиональных механиков с 15-летним опытом работы с грузовиками MAN. 
-              Каждый наш специалист прошёл сертификацию и регулярно повышает квалификацию.
+            <p className="text-xl md:text-2xl mb-8 leading-relaxed">
+              Мы — команда профессиональных механиков-космонавтов с 15-летним опытом полётов... 
+              то есть работы с грузовиками MAN! Каждый наш специалист прошёл сертификацию 
+              в космической академии сервиса.
             </p>
-            <div className="grid md:grid-cols-3 gap-8 mt-12">
-              <div className="text-center">
-                <div className="text-4xl font-bold mb-2">500+</div>
-                <div className="text-lg">Отремонтированных грузовиков</div>
+
+            {/* Animated Statistics */}
+            <div className="grid md:grid-cols-3 gap-8 mt-16">
+              <div className="text-center group cursor-pointer">
+                <div className="text-6xl md:text-7xl font-bold mb-4 text-pixar-orange animate-bounce-slow group-hover:animate-pulse-slow">
+                  500+
+                </div>
+                <div className="text-xl md:text-2xl">Счастливых грузовиков 🚛</div>
+                <div className="text-lg opacity-80">вернулись на дорогу с улыбкой</div>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold mb-2">15</div>
-                <div className="text-lg">Лет опыта</div>
+              <div className="text-center group cursor-pointer">
+                <div className="text-6xl md:text-7xl font-bold mb-4 text-pixar-yellow animate-float group-hover:animate-wiggle">
+                  15
+                </div>
+                <div className="text-xl md:text-2xl">Лет магии 🪄</div>
+                <div className="text-lg opacity-80">превращаем поломки в исправности</div>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold mb-2">24/7</div>
-                <div className="text-lg">Экстренная поддержка</div>
+              <div className="text-center group cursor-pointer">
+                <div className="text-6xl md:text-7xl font-bold mb-4 text-white animate-pulse-slow group-hover:animate-bounce-slow">
+                  24/7
+                </div>
+                <div className="text-xl md:text-2xl">Космическая поддержка 🛸</div>
+                <div className="text-lg opacity-80">всегда на связи</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Parts Section */}
-      <section id="parts" className="py-20 bg-gray-50">
+      {/* Parts Section with Happy Characters */}
+      <section id="запчасти" className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-8 text-pixar-dark">
-            Оригинальные запчасти 📦
+          <h2 className="text-5xl md:text-6xl font-heading font-bold mb-8 text-pixar-dark">
+            Счастливые запчасти 📦✨
           </h2>
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-            Только оригинальные запчасти MAN с гарантией качества и быстрой доставкой
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+            Только оригинальные запчасти MAN, которые улыбаются и работают с радостью!
           </p>
+
           <div className="grid md:grid-cols-4 gap-6">
             {[
-              { name: "Фильтры", icon: "Filter" },
-              { name: "Тормозная система", icon: "Disc" },
-              { name: "Двигатель", icon: "Cog" },
-              { name: "Трансмиссия", icon: "Settings" }
+              { name: "Весёлые фильтры", icon: "Filter", emoji: "😊" },
+              { name: "Надёжные тормоза", icon: "Disc", emoji: "🛡️" },
+              { name: "Сильный двигатель", icon: "Cog", emoji: "💪" },
+              { name: "Умная трансмиссия", icon: "Settings", emoji: "🧠" }
             ].map((part, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow border-2 border-pixar-orange/20">
-                <CardContent className="p-6 text-center">
-                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-pixar-orange flex items-center justify-center">
-                    <Icon name={part.icon as any} size={24} className="text-white" />
+              <Card key={index} className="hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-4 border-pixar-orange/20 hover:border-pixar-orange group cursor-pointer">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gradient-to-r from-pixar-orange to-red-500 flex items-center justify-center shadow-lg group-hover:animate-bounce-slow">
+                    <Icon name={part.icon as any} size={28} className="text-white" />
                   </div>
-                  <h3 className="font-heading font-bold text-pixar-dark">{part.name}</h3>
+                  <h3 className="font-heading font-bold text-pixar-dark text-lg mb-2 group-hover:text-pixar-orange transition-colors">
+                    {part.emoji} {part.name}
+                  </h3>
+                  <p className="text-gray-600 text-sm">С гарантией счастья</p>
                 </CardContent>
               </Card>
             ))}
@@ -189,60 +264,57 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section id="gallery" className="py-20 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-12 text-pixar-dark">
-            Галерея работ 📸
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <div key={item} className="bg-gray-200 rounded-lg aspect-square flex items-center justify-center hover:shadow-lg transition-shadow">
-                <Icon name="Camera" size={48} className="text-gray-400" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contacts Section */}
-      <section id="contacts" className="py-20 bg-pixar-dark text-white">
-        <div className="container mx-auto px-4">
+      {/* Contacts Section - Magical */}
+      <section id="контакты" className="py-20 bg-pixar-dark text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-pixar-dark via-pixar-blue/20 to-pixar-green/20"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-12 text-center">
-              Контакты 📞
+            <h2 className="text-5xl md:text-6xl font-heading font-bold mb-12 text-center">
+              Найти нас легко! 📞🗺️
             </h2>
+
             <div className="grid md:grid-cols-2 gap-12">
-              <div>
-                <h3 className="text-2xl font-heading font-bold mb-6">Как нас найти</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <Icon name="MapPin" size={24} className="text-pixar-orange" />
-                    <span>г. Москва, ул. Грузовая, д. 15</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <Icon name="Phone" size={24} className="text-pixar-orange" />
-                    <span>+7 (495) 123-45-67</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <Icon name="Mail" size={24} className="text-pixar-orange" />
-                    <span>info@man-service.ru</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <Icon name="Clock" size={24} className="text-pixar-orange" />
-                    <span>Пн-Пт: 8:00-20:00, Сб-Вс: 9:00-18:00</span>
-                  </div>
+              <div className="space-y-8">
+                <h3 className="text-3xl font-heading font-bold mb-6 text-pixar-orange">
+                  Космическая база 🚀
+                </h3>
+                <div className="space-y-6">
+                  {[
+                    { icon: "MapPin", text: "г. Москва, ул. Грузовая, д. 15", color: "pixar-orange" },
+                    { icon: "Phone", text: "+7 (495) 123-45-67", color: "pixar-blue" },
+                    { icon: "Mail", text: "info@man-service.ru", color: "pixar-green" },
+                    { icon: "Clock", text: "Пн-Пт: 8:00-20:00, Сб-Вс: 9:00-18:00", color: "pixar-yellow" }
+                  ].map((contact, index) => (
+                    <div key={index} className="flex items-center space-x-4 group cursor-pointer">
+                      <div className={`w-12 h-12 bg-${contact.color} rounded-full flex items-center justify-center shadow-lg group-hover:animate-bounce-slow transition-all duration-300`}>
+                        <Icon name={contact.icon as any} size={20} className="text-white" />
+                      </div>
+                      <span className="text-lg group-hover:text-pixar-orange transition-colors">
+                        {contact.text}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
+
               <div>
-                <h3 className="text-2xl font-heading font-bold mb-6">Экстренная помощь</h3>
-                <div className="bg-red-500 rounded-lg p-6">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <Icon name="Zap" size={32} className="text-white" />
-                    <span className="text-xl font-bold">24/7 Аварийная служба</span>
+                <h3 className="text-3xl font-heading font-bold mb-6 text-red-400">
+                  SOS! Экстренный вызов 🆘
+                </h3>
+                <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-8 shadow-2xl hover:shadow-red-500/50 transition-all duration-300 hover:scale-105 cursor-pointer animate-pulse-slow">
+                  <div className="flex items-center space-x-4 mb-6">
+                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center animate-bounce-slow">
+                      <Icon name="Zap" size={32} className="text-red-500" />
+                    </div>
+                    <div>
+                      <span className="text-2xl font-bold">24/7 Спасательная служба</span>
+                      <p className="text-red-100">Мы прилетим быстрее космического корабля!</p>
+                    </div>
                   </div>
-                  <p className="text-lg">+7 (495) 911-22-33</p>
-                  <p className="text-sm mt-2">Выезд в течение 30 минут</p>
+                  <p className="text-3xl font-bold mb-2">+7 (495) 911-22-33</p>
+                  <p className="text-red-100">⚡ Выезд в течение 30 минут</p>
+                  <p className="text-red-200 text-sm mt-2">🚀 В любую точку галактики... то есть Москвы!</p>
                 </div>
               </div>
             </div>
@@ -250,16 +322,36 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <div className="w-8 h-8 bg-pixar-orange rounded-full flex items-center justify-center">
-              <Icon name="Truck" size={20} className="text-white" />
+      {/* Footer with Playing Trucks */}
+      <footer className="bg-gray-900 text-white py-12 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-pixar-dark/50 to-gray-900"></div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <div className="flex items-center justify-center space-x-4 mb-6">
+            <div className="w-12 h-12 bg-gradient-to-r from-pixar-orange to-red-500 rounded-full flex items-center justify-center animate-bounce-slow">
+              <Icon name="Truck" size={24} className="text-white" />
             </div>
-            <span className="text-xl font-heading font-bold">MAN Service</span>
+            <span className="text-3xl font-heading font-bold">MAN Service</span>
+            <div className="animate-float">🚛</div>
+            <div className="animate-bounce-slow" style={{ animationDelay: '0.5s' }}>🔧</div>
+            <div className="animate-wiggle" style={{ animationDelay: '1s' }}>⚡</div>
           </div>
-          <p className="text-gray-400">© 2024 MAN Service. Мощь. Надёжность. Улыбка.</p>
+          
+          <p className="text-gray-400 text-lg mb-4">
+            © 2024 MAN Service. Мощь. Надёжность. Улыбка. 🚀
+          </p>
+          
+          <p className="text-pixar-orange text-sm">
+            Где каждый грузовик находит свое счастье! 💙✨
+          </p>
+
+          {/* Hidden Easter Eggs */}
+          <div className="absolute bottom-4 left-4 opacity-20 hover:opacity-100 transition-opacity cursor-pointer">
+            <div className="text-xs animate-pulse-slow">🚛💨 Zoom-zoom!</div>
+          </div>
+          <div className="absolute bottom-4 right-4 opacity-20 hover:opacity-100 transition-opacity cursor-pointer">
+            <div className="text-xs animate-wiggle">🔧 Vroom-vroom!</div>
+          </div>
         </div>
       </footer>
     </div>

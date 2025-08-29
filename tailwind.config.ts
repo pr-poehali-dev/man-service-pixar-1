@@ -96,11 +96,36 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				'wiggle': {
+					'0%, 100%': { transform: 'rotate(-3deg)' },
+					'50%': { transform: 'rotate(3deg)' }
+				},
+				'pulse-slow': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' }
+				},
+				'bounce-slow': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
+				},
+				'wink': {
+					'0%, 90%, 100%': { transform: 'scaleY(1)' },
+					'95%': { transform: 'scaleY(0.1)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 3s ease-in-out infinite',
+				'wiggle': 'wiggle 1s ease-in-out infinite',
+				'pulse-slow': 'pulse-slow 2s ease-in-out infinite',
+				'bounce-slow': 'bounce-slow 2s ease-in-out infinite',
+				'wink': 'wink 3s ease-in-out infinite'
 			}
 		}
 	},
