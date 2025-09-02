@@ -281,7 +281,7 @@ const Index = () => {
                 </h3>
                 <div className="space-y-6">
                   {[
-                    { icon: "MapPin", text: "г. Москва, ул. Грузовая, д. 15", color: "pixar-orange" },
+                    { icon: "MapPin", text: "г. Тюмень, ул. Щербакова, 239 стр. 10", color: "pixar-orange" },
                     { icon: "Phone", text: "+7 902 813-65-05", color: "pixar-blue" },
                     { icon: "Mail", text: "info@tt-servis.ru", color: "pixar-green" },
                     { icon: "Clock", text: "Пн-Пт: 8:00-20:00, Сб-Вс: 9:00-18:00", color: "pixar-yellow" }
@@ -314,7 +314,7 @@ const Index = () => {
                   </div>
                   <p className="text-3xl font-bold mb-2">+7 902 813-65-05</p>
                   <p className="text-red-100">⚡ Выезд в течение 30 минут</p>
-                  <p className="text-red-200 text-sm mt-2">🚀 В любую точку галактики... то есть Москвы!</p>
+                  <p className="text-red-200 text-sm mt-2">🚀 В любую точку галактики... то есть Тюмени!</p>
                 </div>
               </div>
             </div>
