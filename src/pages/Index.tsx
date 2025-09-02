@@ -13,7 +13,7 @@ const Index = () => {
               <Icon name="Truck" size={28} className="text-white" />
             </div>
             <h1 className="text-3xl font-heading font-bold text-pixar-dark">
-              ТТ Service
+              ТТ Сервис
             </h1>
             <div className="text-sm font-medium text-pixar-orange">
               "Мощь. Надёжность. Улыбка."
@@ -283,7 +283,7 @@ const Index = () => {
                   {[
                     { icon: "MapPin", text: "г. Москва, ул. Грузовая, д. 15", color: "pixar-orange" },
                     { icon: "Phone", text: "+7 (495) 123-45-67", color: "pixar-blue" },
-                    { icon: "Mail", text: "info@tt-service.ru", color: "pixar-green" },
+                    { icon: "Mail", text: "info@tt-servis.ru", color: "pixar-green" },
                     { icon: "Clock", text: "Пн-Пт: 8:00-20:00, Сб-Вс: 9:00-18:00", color: "pixar-yellow" }
                   ].map((contact, index) => (
                     <div key={index} className="flex items-center space-x-4 group cursor-pointer">
@@ -331,14 +331,14 @@ const Index = () => {
             <div className="w-12 h-12 bg-gradient-to-r from-pixar-orange to-red-500 rounded-full flex items-center justify-center animate-bounce-slow">
               <Icon name="Truck" size={24} className="text-white" />
             </div>
-            <span className="text-3xl font-heading font-bold">ТТ Service</span>
+            <span className="text-3xl font-heading font-bold">ТТ Сервис</span>
             <div className="animate-float">🚛</div>
             <div className="animate-bounce-slow" style={{ animationDelay: '0.5s' }}>🔧</div>
             <div className="animate-wiggle" style={{ animationDelay: '1s' }}>⚡</div>
           </div>
           
           <p className="text-gray-400 text-lg mb-4">
-            © 2024 ТТ Service. Мощь. Надёжность. Улыбка. 🚀
+            © 2024 ТТ Сервис. Мощь. Надёжность. Улыбка. 🚀
           </p>
           
           <p className="text-pixar-orange text-sm">
