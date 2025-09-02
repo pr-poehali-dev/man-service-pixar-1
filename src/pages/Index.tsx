@@ -91,7 +91,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
             <Button 
               onClick={() => setShowBookingCalendar(true)}
-              className="bg-gradient-to-r from-pixar-orange to-red-500 hover:from-red-500 hover:to-pixar-orange text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-pixar-orange/50 animate-pulse-slow"
+              className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-600 text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 animate-pulse-slow"
             >
               <Icon name="Wrench" size={24} className="mr-3" />
               🚛 Записаться на ТО!
@@ -100,7 +100,7 @@ const Index = () => {
               <Icon name="Settings" size={24} className="mr-3" />
               🔧 Узнать о ремонте
             </Button>
-            <Button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-red-500/50 animate-bounce-slow">
+            <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-600 text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 animate-bounce-slow">
               <Icon name="Zap" size={24} className="mr-3" />
               📞 Экстренная помощь
             </Button>
@@ -297,22 +297,22 @@ const Index = () => {
               </div>
 
               <div>
-                <h3 className="text-3xl font-heading font-bold mb-6 text-red-400">
+                <h3 className="text-3xl font-heading font-bold mb-6 text-green-400">
                   SOS! Экстренный вызов 🆘
                 </h3>
-                <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-8 shadow-2xl hover:shadow-red-500/50 transition-all duration-300 hover:scale-105 cursor-pointer animate-pulse-slow">
+                <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-8 shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-105 cursor-pointer animate-pulse-slow">
                   <div className="flex items-center space-x-4 mb-6">
                     <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center animate-bounce-slow">
-                      <Icon name="Zap" size={32} className="text-red-500" />
+                      <Icon name="Zap" size={32} className="text-green-600" />
                     </div>
                     <div>
                       <span className="text-2xl font-bold">24/7 Спасательная служба</span>
-                      <p className="text-red-100">Мы прилетим быстрее космического корабля!</p>
+                      <p className="text-green-100">Мы прилетим быстрее космического корабля!</p>
                     </div>
                   </div>
                   <p className="text-3xl font-bold mb-2">+7 902 813-65-05</p>
-                  <p className="text-red-100">⚡ Выезд в течение 30 минут</p>
-                  <p className="text-red-200 text-sm mt-2">🚀 В любую точку галактики... то есть Тюмени!</p>
+                  <p className="text-green-100">⚡ Выезд в течение 30 минут</p>
+                  <p className="text-green-200 text-sm mt-2">🚀 В любую точку галактики... то есть Тюмени!</p>
                 </div>
               </div>
             </div>
