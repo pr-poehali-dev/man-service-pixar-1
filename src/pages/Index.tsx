@@ -163,14 +163,6 @@ const Index = () => {
                 color: "pixar-blue",
                 emoji: "⚡",
                 animation: "animate-pulse-slow"
-              },
-              {
-                icon: "Truck",
-                title: "Кузовной ремонт",
-                description: "Восстанавливаем красоту с улыбкой",
-                color: "pixar-green",
-                emoji: "🚛",
-                animation: "animate-float"
               }
             ].map((service, index) => (
               <Card key={index} className="hover:shadow-2xl transition-all duration-500 hover:-translate-y-4 border-4 border-gray-100 hover:border-pixar-orange/30 group cursor-pointer relative overflow-hidden">
