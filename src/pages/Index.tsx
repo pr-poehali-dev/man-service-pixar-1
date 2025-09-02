@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from '@/components/ui/icon';
+import BookingCalendar from '@/components/BookingCalendar';
 
 const Index = () => {
+  const [showBookingCalendar, setShowBookingCalendar] = useState(false);
   return (
     <div className="min-h-screen bg-gradient-to-br from-pixar-light to-blue-50 overflow-x-hidden">
       {/* Header */}
@@ -86,7 +89,10 @@ const Index = () => {
 
           {/* Pixar-Style Action Buttons */}
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-            <Button className="bg-gradient-to-r from-pixar-orange to-red-500 hover:from-red-500 hover:to-pixar-orange text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-pixar-orange/50 animate-pulse-slow">
+            <Button 
+              onClick={() => setShowBookingCalendar(true)}
+              className="bg-gradient-to-r from-pixar-orange to-red-500 hover:from-red-500 hover:to-pixar-orange text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-pixar-orange/50 animate-pulse-slow"
+            >
               <Icon name="Wrench" size={24} className="mr-3" />
               🚛 Записаться на ТО!
             </Button>
@@ -354,6 +360,11 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {/* Booking Calendar Modal */}
+      {showBookingCalendar && (
+        <BookingCalendar onClose={() => setShowBookingCalendar(false)} />
+      )}
     </div>
   );
 };
