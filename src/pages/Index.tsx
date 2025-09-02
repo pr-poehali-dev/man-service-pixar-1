@@ -62,8 +62,8 @@ const Index = () => {
           {/* Main Hero Content */}
           <div className="mb-12 relative">
             <img 
-              src="/img/51a6a5e0-f193-4c34-a74a-b83a74e953af.jpg" 
-              alt="Дружелюбный грузовик ТТС в сервисе с повязкой" 
+              src="/img/d3e51891-70db-425d-b1c8-66ccbad97401.jpg" 
+              alt="Дружелюбный грузовик в ТТ сервисе с повязкой" 
               className="mx-auto w-full max-w-3xl rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500 cursor-pointer"
             />
             
