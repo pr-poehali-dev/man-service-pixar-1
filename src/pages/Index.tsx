@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from '@/components/ui/icon';
 import BookingCalendar from '@/components/BookingCalendar';
+import KnowledgeBase from '@/components/KnowledgeBase';
 
 const Index = () => {
   const [showBookingCalendar, setShowBookingCalendar] = useState(false);
+  const [showKnowledgeBase, setShowKnowledgeBase] = useState(false);
   return (
     <div className="min-h-screen bg-gradient-to-br from-pixar-light to-blue-50 overflow-x-hidden">
       {/* Header */}
@@ -99,6 +101,13 @@ const Index = () => {
             <Button variant="outline" className="border-4 border-pixar-blue text-pixar-blue hover:bg-pixar-blue hover:text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl">
               <Icon name="Settings" size={24} className="mr-3" />
               🔧 Узнать о ремонте
+            </Button>
+            <Button 
+              onClick={() => setShowKnowledgeBase(true)}
+              className="bg-gradient-to-r from-pixar-blue to-blue-600 hover:from-blue-600 hover:to-pixar-blue text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50 animate-float"
+            >
+              <Icon name="BookOpen" size={24} className="mr-3" />
+              📚 База знаний
             </Button>
             <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-600 text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 animate-bounce-slow">
               <Icon name="Zap" size={24} className="mr-3" />
@@ -356,6 +365,11 @@ const Index = () => {
       {/* Booking Calendar Modal */}
       {showBookingCalendar && (
         <BookingCalendar onClose={() => setShowBookingCalendar(false)} />
+      )}
+
+      {/* Knowledge Base Modal */}
+      {showKnowledgeBase && (
+        <KnowledgeBase onClose={() => setShowKnowledgeBase(false)} />
       )}
     </div>
   );
