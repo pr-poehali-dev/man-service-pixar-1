@@ -113,7 +113,10 @@ const Index = () => {
           {/* Pixar-Style Action Buttons */}
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
             <Button 
-              onClick={() => setShowBookingCalendar(true)}
+              onClick={() => {
+                console.log('Главная кнопка ТО нажата, showBookingCalendar will be true');
+                setShowBookingCalendar(true);
+              }}
               className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-600 text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 animate-pulse-slow"
             >
               <Icon name="Wrench" size={24} className="mr-3" />
@@ -211,7 +214,10 @@ const Index = () => {
                   </p>
                   <div className="text-center">
                     <Button
-                      onClick={() => setShowBookingCalendar(true)}
+                      onClick={() => {
+                        console.log('Кнопка записи нажата');
+                        setShowBookingCalendar(true);
+                      }}
                       className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-600 text-white px-6 py-3 rounded-full font-bold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-green-500/50"
                     >
                       <Icon name="Calendar" size={16} className="mr-2" />
@@ -394,7 +400,10 @@ const Index = () => {
 
       {/* Booking Calendar Modal */}
       {showBookingCalendar && (
-        <BookingCalendar onClose={() => setShowBookingCalendar(false)} />
+        <div>
+          {console.log('Модальное окно календаря отображается')}
+          <BookingCalendar onClose={() => setShowBookingCalendar(false)} />
+        </div>
       )}
 
       {/* Knowledge Base Modal */}
