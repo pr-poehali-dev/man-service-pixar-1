@@ -66,10 +66,23 @@ const BookingCalendar = ({ onClose }: BookingCalendarProps) => {
     };
     
     try {
-      // Отправляем уведомление на email
-      console.log('Отправка уведомления на tts72@list.ru:', bookingData);
+      const newBooking = {
+        id: Date.now().toString(),
+        date: selectedDate,
+        time: selectedTime,
+        service: services.find(s => s.id === serviceType)?.name || '',
+        customer: customerData.name,
+        phone: customerData.phone,
+        truck: customerData.truck || 'Не указано',
+        status: 'Ожидает'
+      };
       
-      alert(`🎉 Спасибо, ${customerData.name}!\nВы записаны на ${selectedDate} в ${selectedTime}\nТип услуги: ${services.find(s => s.id === serviceType)?.name}\nУведомление отправлено на tts72@list.ru\nМы перезвоним для подтверждения! 🚛`);
+      // Сохраняем в localStorage для админ-панели
+      const existingBookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+      existingBookings.push(newBooking);
+      localStorage.setItem('bookings', JSON.stringify(existingBookings));
+      
+      alert(`🎉 Спасибо, ${customerData.name}!\nВы записаны на ${selectedDate} в ${selectedTime}\nУслуга: ${newBooking.service}\n\nМы перезвоним для подтверждения! 🚛`);
       onClose();
     } catch (error) {
       console.error('Ошибка отправки:', error);

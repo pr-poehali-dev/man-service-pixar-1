@@ -206,9 +206,18 @@ const Index = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 text-center text-lg leading-relaxed">
+                  <p className="text-gray-600 text-center text-lg leading-relaxed mb-6">
                     {service.description}
                   </p>
+                  <div className="text-center">
+                    <Button
+                      onClick={() => setShowBookingCalendar(true)}
+                      className="bg-pixar-orange hover:bg-pixar-orange/80 text-white px-6 py-3 rounded-full font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                    >
+                      <Icon name="Calendar" size={16} className="mr-2" />
+                      Записаться
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             ))}

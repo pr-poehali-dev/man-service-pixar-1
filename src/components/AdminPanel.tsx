@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from '@/components/ui/icon';
@@ -8,13 +8,10 @@ interface Booking {
   date: string;
   time: string;
   service: string;
-  customer: {
-    name: string;
-    phone: string;
-    truck: string;
-  };
-  status: 'pending' | 'confirmed' | 'completed' | 'cancelled';
-  createdAt: string;
+  customer: string;
+  phone: string;
+  truck: string;
+  status: string;
 }
 
 interface AdminPanelProps {
@@ -23,8 +20,49 @@ interface AdminPanelProps {
 
 const AdminPanel = ({ onClose }: AdminPanelProps) => {
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
+  const [bookings, setBookings] = useState<Booking[]>([]);
 
-  // Демо данные записей
+  // Загрузка данных из localStorage
+  useEffect(() => {
+    const savedBookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+    const demoBookings = [
+      {
+        id: 'demo1',
+        date: '2024-09-05',
+        time: '09:00',
+        service: 'Техническое обслуживание',
+        customer: 'Иванов Сергей',
+        phone: '+7 (999) 123-45-67',
+        truck: 'MAN TGX',
+        status: 'Подтверждён'
+      },
+      {
+        id: 'demo2',
+        date: '2024-09-06',
+        time: '11:00',
+        service: 'Диагностика и ремонт',
+        customer: 'Петров Александр',
+        phone: '+7 (999) 987-65-43',
+        truck: 'Volvo FH',
+        status: 'Ожидает'
+      }
+    ];
+    setBookings([...demoBookings, ...savedBookings]);
+  }, []);
+
+  // Обновление статуса
+  const updateStatus = (id: string, newStatus: string) => {
+    const updatedBookings = bookings.map(booking => 
+      booking.id === id ? { ...booking, status: newStatus } : booking
+    );
+    setBookings(updatedBookings);
+    
+    // Обновляем localStorage (только новые записи)
+    const userBookings = updatedBookings.filter(b => !b.id.startsWith('demo'));
+    localStorage.setItem('bookings', JSON.stringify(userBookings));
+  };
+
+  // Демо данные записей (старые)
   const mockBookings: Booking[] = [
     {
       id: '1',
@@ -94,18 +132,13 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
     cancelled: { label: 'Отменено', color: 'bg-red-100 text-red-800', icon: 'X' }
   };
 
-  const filteredBookings = mockBookings.filter(booking => {
+  const filteredBookings = bookings.filter(booking => {
     if (selectedFilter === 'all') return true;
     if (selectedFilter === 'to') return booking.service.includes('Техническое обслуживание');
     if (selectedFilter === 'repair') return booking.service.includes('Диагностика и ремонт');
     if (selectedFilter === 'engine') return booking.service.includes('Ремонт двигателя');
     return true;
   });
-
-  const updateStatus = (bookingId: string, newStatus: Booking['status']) => {
-    // В реальном приложении здесь будет обновление на сервере
-    console.log(`Статус записи ${bookingId} изменён на ${newStatus}`);
-  };
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -151,8 +184,8 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
                   {option.label}
                   <span className="ml-2 text-xs bg-white/20 px-2 py-1 rounded-full">
                     {option.value === 'all' 
-                      ? mockBookings.length 
-                      : mockBookings.filter(b => {
+                      ? bookings.length 
+                      : bookings.filter(b => {
                           if (option.value === 'to') return b.service.includes('Техническое обслуживание');
                           if (option.value === 'repair') return b.service.includes('Диагностика и ремонт');
                           if (option.value === 'engine') return b.service.includes('Ремонт двигателя');
@@ -234,44 +267,51 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
                           
                           <div>
                             <div className="text-sm text-gray-500">Клиент</div>
-                            <div className="font-bold text-pixar-dark">{booking.customer.name}</div>
-                            <div className="text-sm text-gray-600">{booking.customer.phone}</div>
-                            <div className="text-xs text-pixar-orange">{booking.customer.truck}</div>
+                            <div className="font-bold text-pixar-dark">{booking.customer}</div>
+                            <div className="text-sm text-gray-600">{booking.phone}</div>
+                            <div className="text-xs text-pixar-orange">{booking.truck}</div>
                           </div>
                           
                           <div>
                             <div className="text-sm text-gray-500">Услуга</div>
                             <div className="font-semibold text-pixar-dark">{booking.service}</div>
-                            <div className="text-xs text-gray-500">
-                              Создано: {new Date(booking.createdAt).toLocaleDateString('ru-RU')}
-                            </div>
+
                           </div>
                           
                           <div className="flex items-center justify-between">
                             <div>
                               <div className="text-sm text-gray-500">Статус</div>
-                              <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium ${statusMap[booking.status].color}`}>
-                                <Icon name={statusMap[booking.status].icon as any} size={14} />
-                                {statusMap[booking.status].label}
+                              <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium ${
+                                booking.status === 'Ожидает' ? 'bg-yellow-100 text-yellow-800' :
+                                booking.status === 'Подтверждён' ? 'bg-green-100 text-green-800' :
+                                booking.status === 'Выполнено' ? 'bg-blue-100 text-blue-800' :
+                                'bg-red-100 text-red-800'
+                              }`}>
+                                <Icon name={
+                                  booking.status === 'Ожидает' ? 'Clock' :
+                                  booking.status === 'Подтверждён' ? 'CheckCircle' :
+                                  booking.status === 'Выполнено' ? 'Check' : 'X'
+                                } size={14} />
+                                {booking.status}
                               </span>
                             </div>
                             
                             <div className="flex gap-2 ml-4">
-                              {booking.status === 'pending' && (
+                              {booking.status === 'Ожидает' && (
                                 <Button
                                   size="sm"
                                   className="bg-green-500 hover:bg-green-600 text-white"
-                                  onClick={() => updateStatus(booking.id, 'confirmed')}
+                                  onClick={() => updateStatus(booking.id, 'Подтверждён')}
                                 >
                                   <Icon name="Check" size={14} className="mr-1" />
                                   Подтвердить
                                 </Button>
                               )}
-                              {booking.status === 'confirmed' && (
+                              {booking.status === 'Подтверждён' && (
                                 <Button
                                   size="sm"
                                   className="bg-blue-500 hover:bg-blue-600 text-white"
-                                  onClick={() => updateStatus(booking.id, 'completed')}
+                                  onClick={() => updateStatus(booking.id, 'Выполнено')}
                                 >
                                   <Icon name="CheckCircle" size={14} className="mr-1" />
                                   Выполнено
@@ -281,7 +321,7 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
                                 size="sm"
                                 variant="outline"
                                 className="text-red-600 border-red-300 hover:bg-red-50"
-                                onClick={() => updateStatus(booking.id, 'cancelled')}
+                                onClick={() => updateStatus(booking.id, 'Отменено')}
                               >
                                 <Icon name="X" size={14} className="mr-1" />
                                 Отменить
