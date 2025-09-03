@@ -25,6 +25,8 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
   // Загрузка данных из localStorage
   useEffect(() => {
     const savedBookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+    const deletedDemoIds = JSON.parse(localStorage.getItem('deletedDemoBookings') || '[]');
+    
     const demoBookings = [
       {
         id: 'demo1',
@@ -46,7 +48,8 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
         truck: 'Volvo FH',
         status: 'Ожидает'
       }
-    ];
+    ].filter(demo => !deletedDemoIds.includes(demo.id));
+    
     setBookings([...demoBookings, ...savedBookings]);
   }, []);
 
@@ -68,8 +71,13 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
       const updatedBookings = bookings.filter(booking => booking.id !== id);
       setBookings(updatedBookings);
       
-      // Если это пользовательская запись - обновляем localStorage
-      if (!id.startsWith('demo')) {
+      if (id.startsWith('demo')) {
+        // Если это демо запись - сохраняем ID в список удалённых
+        const deletedDemoIds = JSON.parse(localStorage.getItem('deletedDemoBookings') || '[]');
+        deletedDemoIds.push(id);
+        localStorage.setItem('deletedDemoBookings', JSON.stringify(deletedDemoIds));
+      } else {
+        // Если это пользовательская запись - обновляем localStorage
         const userBookings = updatedBookings.filter(b => !b.id.startsWith('demo'));
         localStorage.setItem('bookings', JSON.stringify(userBookings));
       }
