@@ -83,6 +83,9 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
       }
       
       alert('Запись успешно удалена! 🗑️');
+      
+      // Принудительно обновляем компонент
+      setSelectedFilter(selectedFilter);
     }
   };
 
