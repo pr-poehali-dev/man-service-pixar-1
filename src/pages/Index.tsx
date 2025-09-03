@@ -10,6 +10,18 @@ const Index = () => {
   const [showBookingCalendar, setShowBookingCalendar] = useState(false);
   const [showKnowledgeBase, setShowKnowledgeBase] = useState(false);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
+  const [password, setPassword] = useState('');
+
+  const handleAdminAccess = () => {
+    if (password === 'ТТС72') {
+      setShowAdminPanel(true);
+      setShowPasswordPrompt(false);
+      setPassword('');
+    } else {
+      alert('Неверный пароль!');
+    }
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-pixar-light to-blue-50 overflow-x-hidden">
       {/* Header */}
@@ -38,7 +50,7 @@ const Index = () => {
               </a>
             ))}
             <Button
-              onClick={() => setShowAdminPanel(true)}
+              onClick={() => setShowPasswordPrompt(true)}
               className="bg-pixar-blue hover:bg-pixar-blue/80 text-white text-sm px-4 py-2"
             >
               <Icon name="Settings" size={16} className="mr-2" />
@@ -379,6 +391,41 @@ const Index = () => {
       {/* Knowledge Base Modal */}
       {showKnowledgeBase && (
         <KnowledgeBase onClose={() => setShowKnowledgeBase(false)} />
+      )}
+
+      {/* Password Prompt Modal */}
+      {showPasswordPrompt && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-xl max-w-sm w-full mx-4">
+            <h3 className="text-lg font-bold mb-4">Вход в админ-панель</h3>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Введите пароль"
+              className="w-full px-3 py-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-pixar-blue"
+              onKeyPress={(e) => e.key === 'Enter' && handleAdminAccess()}
+            />
+            <div className="flex gap-2">
+              <Button
+                onClick={handleAdminAccess}
+                className="flex-1 bg-pixar-blue hover:bg-pixar-blue/80"
+              >
+                Войти
+              </Button>
+              <Button
+                onClick={() => {
+                  setShowPasswordPrompt(false);
+                  setPassword('');
+                }}
+                variant="outline"
+                className="flex-1"
+              >
+                Отмена
+              </Button>
+            </div>
+          </div>
+        </div>
       )}
 
       {/* Admin Panel Modal */}
