@@ -164,7 +164,7 @@ const Index = () => {
               },
               {
                 icon: "Package",
-                title: "Оригинальные запчасти",
+                title: "Качественные запчасти",
                 description: "Счастливые коробки с деталями прямо от производителя",
                 color: "pixar-green",
                 emoji: "📦",
@@ -212,7 +212,7 @@ const Index = () => {
                   <div className="text-center">
                     <Button
                       onClick={() => setShowBookingCalendar(true)}
-                      className="bg-pixar-orange hover:bg-pixar-orange/80 text-white px-6 py-3 rounded-full font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                      className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-600 text-white px-6 py-3 rounded-full font-bold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-green-500/50"
                     >
                       <Icon name="Calendar" size={16} className="mr-2" />
                       Записаться
