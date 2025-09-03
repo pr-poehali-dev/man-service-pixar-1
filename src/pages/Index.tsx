@@ -437,6 +437,11 @@ const Index = () => {
         </div>
       )}
 
+      {/* Booking Calendar Modal */}
+      {showBookingCalendar && (
+        <BookingCalendar onClose={() => setShowBookingCalendar(false)} />
+      )}
+
       {/* Admin Panel Modal */}
       {showAdminPanel && (
         <AdminPanel onClose={() => setShowAdminPanel(false)} />
