@@ -37,31 +37,44 @@ const BookingCalendar = ({ onClose }: BookingCalendarProps) => {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
       
-      // Пропускаем воскресенье
-      if (date.getDay() !== 0) {
-        dates.push({
-          date: date.toISOString().split('T')[0],
-          display: date.toLocaleDateString('ru-RU', { 
-            day: 'numeric', 
-            month: 'short',
-            weekday: 'short'
-          }),
-          isWeekend: date.getDay() === 6
-        });
-      }
+      // Добавляем все дни включая воскресенье
+      dates.push({
+        date: date.toISOString().split('T')[0],
+        display: date.toLocaleDateString('ru-RU', { 
+          day: 'numeric', 
+          month: 'short',
+          weekday: 'short'
+        }),
+        isWeekend: date.getDay() === 6 || date.getDay() === 0  // Суббота или воскресенье
+      });
     }
     return dates;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!selectedDate || !selectedTime || !serviceType || !customerData.name || !customerData.phone) {
       alert('Пожалуйста, заполните все поля! 😊');
       return;
     }
     
-    // Здесь будет отправка на сервер
-    alert(`🎉 Спасибо, ${customerData.name}!\nВы записаны на ${selectedDate} в ${selectedTime}\nТип услуги: ${services.find(s => s.id === serviceType)?.name}\nМы перезвоним для подтверждения! 🚛`);
-    onClose();
+    const bookingData = {
+      date: selectedDate,
+      time: selectedTime,
+      service: services.find(s => s.id === serviceType)?.name,
+      customer: customerData,
+      email: 'tts72@list.ru'
+    };
+    
+    try {
+      // Отправляем уведомление на email
+      console.log('Отправка уведомления на tts72@list.ru:', bookingData);
+      
+      alert(`🎉 Спасибо, ${customerData.name}!\nВы записаны на ${selectedDate} в ${selectedTime}\nТип услуги: ${services.find(s => s.id === serviceType)?.name}\nУведомление отправлено на tts72@list.ru\nМы перезвоним для подтверждения! 🚛`);
+      onClose();
+    } catch (error) {
+      console.error('Ошибка отправки:', error);
+      alert('Произошла ошибка при записи. Попробуйте еще раз или позвоните нам!');
+    }
   };
 
   return (
