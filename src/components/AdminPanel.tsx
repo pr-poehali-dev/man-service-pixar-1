@@ -62,6 +62,18 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
     localStorage.setItem('bookings', JSON.stringify(userBookings));
   };
 
+  // Удаление записи
+  const deleteBooking = (id: string) => {
+    if (confirm('Вы уверены, что хотите удалить эту запись?')) {
+      const updatedBookings = bookings.filter(booking => booking.id !== id);
+      setBookings(updatedBookings);
+      
+      // Обновляем localStorage (только новые записи)
+      const userBookings = updatedBookings.filter(b => !b.id.startsWith('demo'));
+      localStorage.setItem('bookings', JSON.stringify(userBookings));
+    }
+  };
+
   // Демо данные записей (старые)
   const mockBookings: Booking[] = [
     {
@@ -284,48 +296,79 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
                               <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium ${
                                 booking.status === 'Ожидает' ? 'bg-yellow-100 text-yellow-800' :
                                 booking.status === 'Подтверждён' ? 'bg-green-100 text-green-800' :
-                                booking.status === 'Выполнено' ? 'bg-blue-100 text-blue-800' :
+                                booking.status === 'В работе' ? 'bg-blue-100 text-blue-800' :
+                                booking.status === 'Выполнено' ? 'bg-purple-100 text-purple-800' :
                                 'bg-red-100 text-red-800'
                               }`}>
                                 <Icon name={
                                   booking.status === 'Ожидает' ? 'Clock' :
                                   booking.status === 'Подтверждён' ? 'CheckCircle' :
+                                  booking.status === 'В работе' ? 'Play' :
                                   booking.status === 'Выполнено' ? 'Check' : 'X'
                                 } size={14} />
                                 {booking.status}
                               </span>
                             </div>
                             
-                            <div className="flex gap-2 ml-4">
-                              {booking.status === 'Ожидает' && (
+                            <div className="flex flex-col gap-2">
+                              {/* Выпадающий список статусов */}
+                              <div className="flex items-center gap-2">
+                                <label className="text-xs text-gray-500">Статус:</label>
+                                <select
+                                  value={booking.status}
+                                  onChange={(e) => updateStatus(booking.id, e.target.value)}
+                                  className="text-xs px-2 py-1 border rounded focus:outline-none focus:ring-1 focus:ring-pixar-blue"
+                                >
+                                  <option value="Ожидает">Ожидает</option>
+                                  <option value="Подтверждён">Подтверждён</option>
+                                  <option value="В работе">В работе</option>
+                                  <option value="Выполнено">Выполнено</option>
+                                  <option value="Отменено">Отменено</option>
+                                </select>
+                              </div>
+                              
+                              {/* Кнопки действий */}
+                              <div className="flex gap-1">
+                                {booking.status === 'Ожидает' && (
+                                  <Button
+                                    size="sm"
+                                    className="bg-green-500 hover:bg-green-600 text-white text-xs px-2 py-1"
+                                    onClick={() => updateStatus(booking.id, 'Подтверждён')}
+                                  >
+                                    <Icon name="Check" size={12} className="mr-1" />
+                                    Подтвердить
+                                  </Button>
+                                )}
+                                {booking.status === 'Подтверждён' && (
+                                  <Button
+                                    size="sm"
+                                    className="bg-blue-500 hover:bg-blue-600 text-white text-xs px-2 py-1"
+                                    onClick={() => updateStatus(booking.id, 'В работе')}
+                                  >
+                                    <Icon name="Play" size={12} className="mr-1" />
+                                    В работу
+                                  </Button>
+                                )}
+                                {booking.status === 'В работе' && (
+                                  <Button
+                                    size="sm"
+                                    className="bg-purple-500 hover:bg-purple-600 text-white text-xs px-2 py-1"
+                                    onClick={() => updateStatus(booking.id, 'Выполнено')}
+                                  >
+                                    <Icon name="CheckCircle" size={12} className="mr-1" />
+                                    Завершить
+                                  </Button>
+                                )}
                                 <Button
                                   size="sm"
-                                  className="bg-green-500 hover:bg-green-600 text-white"
-                                  onClick={() => updateStatus(booking.id, 'Подтверждён')}
+                                  variant="outline"
+                                  className="text-red-600 border-red-300 hover:bg-red-50 text-xs px-2 py-1"
+                                  onClick={() => deleteBooking(booking.id)}
                                 >
-                                  <Icon name="Check" size={14} className="mr-1" />
-                                  Подтвердить
+                                  <Icon name="Trash2" size={12} className="mr-1" />
+                                  Удалить
                                 </Button>
-                              )}
-                              {booking.status === 'Подтверждён' && (
-                                <Button
-                                  size="sm"
-                                  className="bg-blue-500 hover:bg-blue-600 text-white"
-                                  onClick={() => updateStatus(booking.id, 'Выполнено')}
-                                >
-                                  <Icon name="CheckCircle" size={14} className="mr-1" />
-                                  Выполнено
-                                </Button>
-                              )}
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                className="text-red-600 border-red-300 hover:bg-red-50"
-                                onClick={() => updateStatus(booking.id, 'Отменено')}
-                              >
-                                <Icon name="X" size={14} className="mr-1" />
-                                Отменить
-                              </Button>
+                              </div>
                             </div>
                           </div>
                         </div>
