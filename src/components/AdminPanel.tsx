@@ -68,9 +68,13 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
       const updatedBookings = bookings.filter(booking => booking.id !== id);
       setBookings(updatedBookings);
       
-      // Обновляем localStorage (только новые записи)
-      const userBookings = updatedBookings.filter(b => !b.id.startsWith('demo'));
-      localStorage.setItem('bookings', JSON.stringify(userBookings));
+      // Если это пользовательская запись - обновляем localStorage
+      if (!id.startsWith('demo')) {
+        const userBookings = updatedBookings.filter(b => !b.id.startsWith('demo'));
+        localStorage.setItem('bookings', JSON.stringify(userBookings));
+      }
+      
+      alert('Запись успешно удалена! 🗑️');
     }
   };
 
