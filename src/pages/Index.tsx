@@ -4,10 +4,12 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from '@/components/ui/icon';
 import BookingCalendar from '@/components/BookingCalendar';
 import KnowledgeBase from '@/components/KnowledgeBase';
+import AdminPanel from '@/components/AdminPanel';
 
 const Index = () => {
   const [showBookingCalendar, setShowBookingCalendar] = useState(false);
   const [showKnowledgeBase, setShowKnowledgeBase] = useState(false);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
   return (
     <div className="min-h-screen bg-gradient-to-br from-pixar-light to-blue-50 overflow-x-hidden">
       {/* Header */}
@@ -35,6 +37,13 @@ const Index = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pixar-orange transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
+            <Button
+              onClick={() => setShowAdminPanel(true)}
+              className="bg-pixar-blue hover:bg-pixar-blue/80 text-white text-sm px-4 py-2"
+            >
+              <Icon name="Settings" size={16} className="mr-2" />
+              Админ
+            </Button>
           </nav>
         </div>
       </header>
@@ -370,6 +379,11 @@ const Index = () => {
       {/* Knowledge Base Modal */}
       {showKnowledgeBase && (
         <KnowledgeBase onClose={() => setShowKnowledgeBase(false)} />
+      )}
+
+      {/* Admin Panel Modal */}
+      {showAdminPanel && (
+        <AdminPanel onClose={() => setShowAdminPanel(false)} />
       )}
     </div>
   );
