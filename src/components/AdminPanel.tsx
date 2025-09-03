@@ -83,9 +83,6 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
       }
       
       alert('Запись успешно удалена! 🗑️');
-      
-      // Принудительно обновляем компонент
-      setSelectedFilter(selectedFilter);
     }
   };
 
@@ -167,6 +164,15 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
     return true;
   });
 
+  // Функция для подсчёта записей по категории
+  const getBookingCount = (filterValue: string) => {
+    if (filterValue === 'all') return bookings.length;
+    if (filterValue === 'to') return bookings.filter(b => b.service.includes('Техническое обслуживание')).length;
+    if (filterValue === 'repair') return bookings.filter(b => b.service.includes('Диагностика и ремонт')).length;
+    if (filterValue === 'engine') return bookings.filter(b => b.service.includes('Ремонт двигателя')).length;
+    return 0;
+  };
+
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-7xl max-h-[90vh] overflow-hidden bg-white shadow-2xl border-4 border-pixar-blue/20">
@@ -210,15 +216,7 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
                   <Icon name={option.icon as any} size={16} className="mr-2" />
                   {option.label}
                   <span className="ml-2 text-xs bg-white/20 px-2 py-1 rounded-full">
-                    {option.value === 'all' 
-                      ? bookings.length 
-                      : bookings.filter(b => {
-                          if (option.value === 'to') return b.service.includes('Техническое обслуживание');
-                          if (option.value === 'repair') return b.service.includes('Диагностика и ремонт');
-                          if (option.value === 'engine') return b.service.includes('Ремонт двигателя');
-                          return false;
-                        }).length
-                    }
+                    {getBookingCount(option.value)}
                   </span>
                 </Button>
               ))}
