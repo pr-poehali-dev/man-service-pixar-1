@@ -35,7 +35,7 @@ const Index = () => {
               АвтоСервис Мастер
             </h1>
             <div className="text-sm font-medium text-pixar-orange">
-              "Техобслуживание и ремонт в Москве"
+              "Техобслуживание и ремонт в Тюмени"
             </div>
           </div>
           <nav className="hidden md:flex space-x-6">
@@ -84,7 +84,7 @@ const Index = () => {
           <div className="mb-12 relative">
             <img 
               src="/img/d3e51891-70db-425d-b1c8-66ccbad97401.jpg" 
-              alt="Профессиональный автосервис в Москве - качественное ТО и ремонт" 
+              alt="Профессиональный автосервис в Тюмени - качественное ТО и ремонт" 
               className="mx-auto w-full max-w-3xl rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500 cursor-pointer"
             />
             
