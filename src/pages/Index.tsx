@@ -101,11 +101,11 @@ const Index = () => {
           {/* Main Headlines with Pixar Style */}
           <div className="relative">
             <h1 className="text-6xl md:text-8xl font-heading font-bold mb-6 text-pixar-dark leading-tight">
-              <span className="text-pixar-orange animate-pulse-slow">Профессиональное</span>{' '}
-              <span className="text-pixar-blue">ТО в Москве!</span>
+              <span className="text-pixar-orange animate-pulse-slow">MAN сервис</span>{' '}
+              <span className="text-pixar-blue">в Тюмени!</span>
             </h1>
             <p className="text-2xl md:text-3xl mb-8 text-pixar-dark font-medium relative">
-              Техобслуживание и ремонт автомобилей любой сложности 🚗
+              ТО и ремонт грузовиков MAN (70%), DAF, Volvo, Mercedes, Scania 🚚
               <span className="absolute -top-2 -right-2 text-4xl animate-bounce">🔧</span>
             </p>
           </div>
@@ -120,11 +120,11 @@ const Index = () => {
               className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-600 text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 animate-pulse-slow"
             >
               <Icon name="Wrench" size={24} className="mr-3" />
-              🚛 Записаться на ТО!
+              🚛 ТО MAN грузовиков!
             </Button>
             <Button variant="outline" className="border-4 border-pixar-blue text-pixar-blue hover:bg-pixar-blue hover:text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl">
               <Icon name="Settings" size={24} className="mr-3" />
-              🔧 Узнать о ремонте
+              🚚 Ремонт DAF, Volvo
             </Button>
             <Button 
               onClick={() => setShowKnowledgeBase(true)}
@@ -135,7 +135,7 @@ const Index = () => {
             </Button>
             <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-600 text-white text-xl px-10 py-8 rounded-full transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 animate-bounce-slow">
               <Icon name="Zap" size={24} className="mr-3" />
-              📞 Экстренная помощь
+              🚚 Эвакуация грузовиков
             </Button>
           </div>
         </div>
