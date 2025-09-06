@@ -32,14 +32,14 @@ const Index = () => {
               <Icon name="Truck" size={28} className="text-white" />
             </div>
             <h1 className="text-3xl font-heading font-bold text-pixar-dark">
-              ТТ Сервис
+              АвтоСервис Мастер
             </h1>
             <div className="text-sm font-medium text-pixar-orange">
-              "Мощь. Надёжность. Улыбка."
+              "Техобслуживание и ремонт в Москве"
             </div>
           </div>
           <nav className="hidden md:flex space-x-6">
-            {["Главная", "Услуги", "О нас", "Запчасти", "Галерея", "Контакты"].map((item) => (
+            {["Главная", "Услуги ТО", "Диагностика", "Ремонт", "Отзывы", "Контакты"].map((item) => (
               <a 
                 key={item}
                 href={`#${item.toLowerCase().replace(' ', '-')}`} 
@@ -67,7 +67,7 @@ const Index = () => {
           <div className="absolute top-10 left-10 animate-float">
             <img 
               src="/img/dd3dee4c-d773-4617-a8f8-83e026798bba.jpg" 
-              alt="Весёлый гаечный ключ" 
+              alt="Профессиональные инструменты для техобслуживания авто" 
               className="w-20 h-20 rounded-full shadow-lg hover:animate-wiggle cursor-pointer"
             />
           </div>
@@ -75,7 +75,7 @@ const Index = () => {
           <div className="absolute top-20 right-20 animate-float" style={{ animationDelay: '1s' }}>
             <img 
               src="/img/c984f0b1-54b0-4d71-97bc-752a2a1a4c23.jpg" 
-              alt="Счастливый домкрат" 
+              alt="Оборудование автосервиса для ремонта машин" 
               className="w-24 h-24 rounded-full shadow-lg hover:animate-bounce cursor-pointer"
             />
           </div>
@@ -84,7 +84,7 @@ const Index = () => {
           <div className="mb-12 relative">
             <img 
               src="/img/d3e51891-70db-425d-b1c8-66ccbad97401.jpg" 
-              alt="Дружелюбный грузовик в ТТ сервисе с повязкой" 
+              alt="Профессиональный автосервис в Москве - качественное ТО и ремонт" 
               className="mx-auto w-full max-w-3xl rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500 cursor-pointer"
             />
             
@@ -92,7 +92,7 @@ const Index = () => {
             <div className="absolute bottom-4 left-4 animate-wink">
               <img 
                 src="/img/aa0bcdd6-9dcc-428f-9275-ecc3a6cdfc37.jpg" 
-                alt="Мудрый старый джип подмигивает" 
+                alt="Опытные мастера по ремонту автомобилей" 
                 className="w-20 h-20 rounded-lg shadow-lg hover:animate-pulse-slow cursor-pointer"
               />
             </div>
@@ -101,12 +101,12 @@ const Index = () => {
           {/* Main Headlines with Pixar Style */}
           <div className="relative">
             <h1 className="text-6xl md:text-8xl font-heading font-bold mb-6 text-pixar-dark leading-tight">
-              Вернём <span className="text-pixar-orange animate-pulse-slow">Мощь</span> и{' '}
-              <span className="text-pixar-blue">Надёжность!</span>
+              <span className="text-pixar-orange animate-pulse-slow">Профессиональное</span>{' '}
+              <span className="text-pixar-blue">ТО в Москве!</span>
             </h1>
             <p className="text-2xl md:text-3xl mb-8 text-pixar-dark font-medium relative">
-              С заботой о ваших грузовиках! 🚛
-              <span className="absolute -top-2 -right-2 text-4xl animate-bounce">💙</span>
+              Техобслуживание и ремонт автомобилей любой сложности 🚗
+              <span className="absolute -top-2 -right-2 text-4xl animate-bounce">🔧</span>
             </p>
           </div>
 
