@@ -324,7 +324,7 @@ const Index = () => {
                 </h3>
                 <div className="space-y-6">
                   {[
-                    { icon: "MapPin", text: "г. Тюмень, ул. Щербакова, 239 стр. 10", color: "pixar-orange" },
+                    { icon: "MapPin", text: "г. Тюмень, ул. 50 лет октября, 199с5", color: "pixar-orange" },
                     { icon: "Phone", text: "+7 902 813-65-05", color: "pixar-blue" },
                     { icon: "Mail", text: "info@tt-servis.ru", color: "pixar-green" },
                     { icon: "Clock", text: "Пн-Пт: 8:00-20:00, Сб-Вс: 9:00-18:00", color: "pixar-yellow" }
