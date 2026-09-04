@@ -1,0 +1,19 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Wrong password",
+      "method": "POST",
+      "path": "/",
+      "body": {"password": "wrong-password-xyz"},
+      "expectedStatus": 401,
+      "expectedBody": {"success": false},
+      "bodyMatcher": "partial"
+    }
+  ]
+}

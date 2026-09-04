@@ -5,6 +5,7 @@ import Icon from '@/components/ui/icon';
 import BookingCalendar from '@/components/BookingCalendar';
 import KnowledgeBase from '@/components/KnowledgeBase';
 import AdminPanel from '@/components/AdminPanel';
+import func2url from '../../func2url.json';
 
 const Index = () => {
   const [showBookingCalendar, setShowBookingCalendar] = useState(false);
@@ -12,14 +13,28 @@ const Index = () => {
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
   const [password, setPassword] = useState('');
+  const [isChecking, setIsChecking] = useState(false);
 
-  const handleAdminAccess = () => {
-    if (password === 'ТТС72') {
-      setShowAdminPanel(true);
-      setShowPasswordPrompt(false);
-      setPassword('');
-    } else {
-      alert('Неверный пароль!');
+  const handleAdminAccess = async () => {
+    setIsChecking(true);
+    try {
+      const response = await fetch(func2url['admin-auth'], {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+      const data = await response.json();
+      if (data.success) {
+        setShowAdminPanel(true);
+        setShowPasswordPrompt(false);
+        setPassword('');
+      } else {
+        alert('Неверный пароль!');
+      }
+    } catch (error) {
+      alert('Ошибка проверки пароля. Попробуйте ещё раз.');
+    } finally {
+      setIsChecking(false);
     }
   };
   return (
@@ -427,9 +442,10 @@ const Index = () => {
             <div className="flex gap-2">
               <Button
                 onClick={handleAdminAccess}
+                disabled={isChecking}
                 className="flex-1 bg-pixar-blue hover:bg-pixar-blue/80"
               >
-                Войти
+                {isChecking ? 'Проверка...' : 'Войти'}
               </Button>
               <Button
                 onClick={() => {
@@ -437,6 +453,7 @@ const Index = () => {
                   setPassword('');
                 }}
                 variant="outline"
+                disabled={isChecking}
                 className="flex-1"
               >
                 Отмена
