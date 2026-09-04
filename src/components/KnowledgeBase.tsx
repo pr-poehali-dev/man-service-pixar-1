@@ -381,7 +381,7 @@ const KnowledgeBase = ({ onClose }: KnowledgeBaseProps) => {
                     <div className="flex gap-3">
                       <Button className="bg-pixar-orange hover:bg-orange-600 text-white">
                         <Icon name="Phone" size={16} className="mr-2" />
-                        Позвонить: +7 902 813-65-05
+                        Позвонить: +7 922 479-86-08
                       </Button>
                       <Button variant="outline" className="border-2 border-pixar-blue text-pixar-blue hover:bg-pixar-blue hover:text-white">
                         <Icon name="Mail" size={16} className="mr-2" />

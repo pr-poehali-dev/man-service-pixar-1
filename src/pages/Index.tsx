@@ -339,8 +339,8 @@ const Index = () => {
                 </h3>
                 <div className="space-y-6">
                   {[
-                    { icon: "MapPin", text: "г. Тюмень, ул. 50 лет октября, 199с5", color: "pixar-orange" },
-                    { icon: "Phone", text: "+7 902 813-65-05", color: "pixar-blue" },
+                    { icon: "MapPin", text: "г. Тюмень, ул. Чекистов, 38", color: "pixar-orange" },
+                    { icon: "Phone", text: "+7 922 479-86-08", color: "pixar-blue" },
                     { icon: "Mail", text: "tts72@list.ru", color: "pixar-green" },
                     { icon: "Clock", text: "Пн-Пт: 8:00-20:00, Сб-Вс: 9:00-18:00", color: "pixar-yellow" }
                   ].map((contact, index) => (
@@ -370,7 +370,7 @@ const Index = () => {
                       <p className="text-green-100">Мы прилетим быстрее космического корабля!</p>
                     </div>
                   </div>
-                  <p className="text-3xl font-bold mb-2">+7 902 813-65-05</p>
+                  <p className="text-3xl font-bold mb-2">+7 922 479-86-08</p>
                   <p className="text-green-100">⚡ Выезд в течение 30 минут</p>
                   <p className="text-green-200 text-sm mt-2">🚀 В любую точку галактики... то есть Тюмени!</p>
                 </div>
