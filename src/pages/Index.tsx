@@ -5,7 +5,7 @@ import Icon from '@/components/ui/icon';
 import BookingCalendar from '@/components/BookingCalendar';
 import KnowledgeBase from '@/components/KnowledgeBase';
 import AdminPanel from '@/components/AdminPanel';
-import func2url from '../../func2url.json';
+import func2url from '../../backend/func2url.json';
 
 const Index = () => {
   const [showBookingCalendar, setShowBookingCalendar] = useState(false);
