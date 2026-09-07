@@ -376,7 +376,7 @@ const KnowledgeBase = ({ onClose }: KnowledgeBaseProps) => {
                       <h4 className="font-bold text-pixar-dark">Нужна помощь?</h4>
                     </div>
                     <p className="text-gray-600 mb-4">
-                      Наши механики-космонавты готовы помочь с любыми вопросами! 🚀
+                      Наши механики готовы помочь с любыми вопросами! 🚀
                     </p>
                     <div className="flex gap-3">
                       <Button className="bg-pixar-orange hover:bg-orange-600 text-white">

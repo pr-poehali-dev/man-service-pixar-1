@@ -111,7 +111,7 @@ const BookingCalendar = ({ onClose }: BookingCalendarProps) => {
             🚛 Запись в ТТ Сервис
           </CardTitle>
           <p className="text-pixar-light opacity-90">
-            Выберите удобные дату и время для визита наших механиков-космонавтов! 🚀
+            Выберите удобные дату и время для визита наших мастеров! 🚀
           </p>
         </CardHeader>
         
