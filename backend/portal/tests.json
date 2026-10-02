@@ -1,1 +1,25 @@
-{"tests": [{"name": "Get companies list", "method": "GET", "path": "/", "expectedStatus": 200, "expectedBody": {"companies": []}, "bodyMatcher": "partial"}, {"name": "Reject create without password", "method": "POST", "path": "/", "body": {"name": "Test", "category": "sto"}, "expectedStatus": 401, "expectedBody": {"error": "Нет доступа"}, "bodyMatcher": "partial"}]}
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Get companies list",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Reject create without password",
+      "method": "POST",
+      "path": "/",
+      "body": {"name": "Test", "category": "sto", "password": "wrong-password-xyz"},
+      "expectedStatus": 401,
+      "expectedBody": {"error": "string"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}

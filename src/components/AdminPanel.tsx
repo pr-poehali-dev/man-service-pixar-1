@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from '@/components/ui/icon';
+import PortalAdmin from '@/components/PortalAdmin';
 
 interface Booking {
   id: string;
@@ -16,9 +17,11 @@ interface Booking {
 
 interface AdminPanelProps {
   onClose: () => void;
+  adminPassword: string;
 }
 
-const AdminPanel = ({ onClose }: AdminPanelProps) => {
+const AdminPanel = ({ onClose, adminPassword }: AdminPanelProps) => {
+  const [tab, setTab] = useState<'bookings' | 'portal'>('bookings');
   const [selectedFilter, setSelectedFilter] = useState<string>('all');
   const [bookings, setBookings] = useState<Booking[]>([]);
 
@@ -198,7 +201,30 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
           </p>
         </CardHeader>
         
-        <CardContent className="p-6">
+        <CardContent className="p-6 overflow-y-auto max-h-[70vh]">
+          <div className="flex gap-3 mb-6">
+            <Button
+              variant={tab === 'bookings' ? 'default' : 'outline'}
+              className={tab === 'bookings' ? 'bg-pixar-blue text-white hover:bg-pixar-blue/80' : ''}
+              onClick={() => setTab('bookings')}
+            >
+              <Icon name="Calendar" size={16} className="mr-2" />
+              Записи
+            </Button>
+            <Button
+              variant={tab === 'portal' ? 'default' : 'outline'}
+              className={tab === 'portal' ? 'bg-pixar-blue text-white hover:bg-pixar-blue/80' : ''}
+              onClick={() => setTab('portal')}
+            >
+              <Icon name="Truck" size={16} className="mr-2" />
+              Грузовой портал
+            </Button>
+          </div>
+
+          {tab === 'portal' ? (
+            <PortalAdmin adminPassword={adminPassword} />
+          ) : (
+          <>
           {/* Фильтры */}
           <div className="mb-6">
             <div className="flex flex-wrap gap-3">
@@ -392,6 +418,8 @@ const AdminPanel = ({ onClose }: AdminPanelProps) => {
               ))
             )}
           </div>
+          </>
+          )}
         </CardContent>
       </Card>
     </div>

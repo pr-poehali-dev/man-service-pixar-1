@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Icon from '@/components/ui/icon';
@@ -13,6 +14,7 @@ const Index = () => {
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
   const [password, setPassword] = useState('');
+  const [adminPassword, setAdminPassword] = useState('');
   const [isChecking, setIsChecking] = useState(false);
 
   const handleAdminAccess = async () => {
@@ -25,6 +27,7 @@ const Index = () => {
       });
       const data = await response.json();
       if (data.success) {
+        setAdminPassword(password);
         setShowAdminPanel(true);
         setShowPasswordPrompt(false);
         setPassword('');
@@ -64,6 +67,12 @@ const Index = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-pixar-orange transition-all duration-300 group-hover:w-full"></span>
               </a>
             ))}
+            <Link
+              to="/portal"
+              className="text-pixar-dark hover:text-pixar-orange transition-all duration-300 hover:scale-105 font-medium"
+            >
+              Грузовой портал
+            </Link>
             <Button
               onClick={() => setShowPasswordPrompt(true)}
               className="bg-pixar-blue hover:bg-pixar-blue/80 text-white text-sm px-4 py-2"
@@ -470,7 +479,7 @@ const Index = () => {
 
       {/* Admin Panel Modal */}
       {showAdminPanel && (
-        <AdminPanel onClose={() => setShowAdminPanel(false)} />
+        <AdminPanel onClose={() => setShowAdminPanel(false)} adminPassword={adminPassword} />
       )}
     </div>
   );
