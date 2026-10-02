@@ -8,6 +8,8 @@ export interface Company {
   phone: string;
   work_hours: string;
   description: string;
+  status?: string;
+  contact_name?: string;
 }
 
 export const PORTAL_CATEGORIES = [

@@ -4,12 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { Company, PORTAL_CATEGORIES, getPortalUrl } from '@/lib/portal';
+import PortalSubmitForm from '@/components/PortalSubmitForm';
 
 const Portal = () => {
   const [companies, setCompanies] = useState<Company[]>([]);
   const [category, setCategory] = useState('all');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const url = getPortalUrl();
@@ -41,12 +43,18 @@ const Portal = () => {
             <Icon name="Truck" size={32} className="text-pixar-orange" />
             Грузовой портал
           </h1>
-          <Link to="/">
-            <Button variant="outline" className="border-2 border-pixar-blue text-pixar-blue">
-              <Icon name="ArrowLeft" size={16} className="mr-2" />
-              На главную
+          <div className="flex gap-3">
+            <Button onClick={() => setShowForm(true)} className="bg-pixar-orange text-white hover:bg-pixar-orange/80">
+              <Icon name="Plus" size={16} className="mr-2" />
+              Добавить компанию
             </Button>
-          </Link>
+            <Link to="/">
+              <Button variant="outline" className="border-2 border-pixar-blue text-pixar-blue">
+                <Icon name="ArrowLeft" size={16} className="mr-2" />
+                На главную
+              </Button>
+            </Link>
+          </div>
         </div>
       </header>
 
@@ -129,6 +137,8 @@ const Portal = () => {
           </div>
         )}
       </main>
+
+      {showForm && <PortalSubmitForm onClose={() => setShowForm(false)} />}
     </div>
   );
 };

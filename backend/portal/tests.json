@@ -13,6 +13,20 @@
       "expectedStatus": 200
     },
     {
+      "name": "Submit without required fields",
+      "method": "POST",
+      "path": "/",
+      "body": {"action": "submit", "name": "Test"},
+      "expectedStatus": 400
+    },
+    {
+      "name": "Admin list without password",
+      "method": "POST",
+      "path": "/",
+      "body": {"action": "list", "password": "wrong-password-xyz"},
+      "expectedStatus": 401
+    },
+    {
       "name": "Reject create without password",
       "method": "POST",
       "path": "/",
